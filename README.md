@@ -8,7 +8,7 @@ Infrastructure • Automation • Monitoring • Cybersecurity
 
 <img src="https://readme-typing-svg.herokuapp.com?font=JetBrains+Mono&size=20&duration=3000&pause=1000&color=00FF41&center=true&vCenter=true&width=435&lines=Infrastructure+Automation;CyberSecurity;Monitoring+%26+Observability;Cloud+Architecture" alt="Typing SVG" />
 
-### 🚀 [🌐 Voir Portfolio Complet](https://sbeteta42.github.io/sbeteta42/)
+### 🚀 [🌐 Voir Portfolio Complet](https://sbeteta42.github.io/)
 
 </div>
 
