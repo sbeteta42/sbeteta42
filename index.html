@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sbeteta42 - CyberSecurity && DevSysOps Engineer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'JetBrains Mono', 'Fira Code', 'SF Mono', Monaco, 'Cascadia Code', monospace;
+            background: #0a0a0a;
+            color: #e0e0e0;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .matrix-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.03;
+            z-index: -1;
+            background: repeating-linear-gradient(
+                0deg,
+                transparent,
+                transparent 2px,
+                #00ff00 2px,
+                #00ff00 4px
+            );
+            animation: matrix-scroll 20s linear infinite;
+        }
+
+        @keyframes matrix-scroll {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(50px); }
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .terminal-header {
+            background: linear-gradient(135deg, #1e1e1e 0%, #2d2d2d 100%);
+            border: 1px solid #333;
+            border-radius: 8px 8px 0 0;
+            padding: 0.5rem 1rem;
+            margin-bottom: 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .terminal-dots {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .dot.red { background: #ff5f56; }
+        .dot.yellow { background: #ffbd2e; }
+        .dot.green { background: #27ca3f; }
+
+        .terminal-title {
+            margin-left: 1rem;
+            color: #888;
+            font-size: 0.9rem;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+            border: 1px solid #333;
+            border-top: none;
+            border-radius: 0 0 8px 8px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #00ff41, #0099ff, #ff0080, #00ff41);
+            animation: rainbow 3s linear infinite;
+        }
+
+        @keyframes rainbow {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .profile-section {
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .profile-img {
+            width: 100px;
+            height: 100px;
+            border-radius: 8px;
+            border: 2px solid #00ff41;
+            box-shadow: 0 0 20px rgba(0, 255, 65, 0.3);
+        }
+
+        .profile-info h1 {
+            color: #00ff41;
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 0 10px rgba(0, 255, 65, 0.5);
+        }
+
+        .profile-info .subtitle {
+            color: #0099ff;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .profile-info .bio {
+            color: #888;
+            line-height: 1.6;
+        }
+
+        .terminal-prompt {
+            color: #00ff41;
+            margin-right: 0.5rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            text-align: center;
+        }
+
+        .stat-item {
+            background: rgba(0, 255, 65, 0.1);
+            border: 1px solid rgba(0, 255, 65, 0.3);
+            border-radius: 4px;
+            padding: 1rem;
+        }
+
+        .stat-number {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #00ff41;
+            display: block;
+            text-shadow: 0 0 10px rgba(0, 255, 65, 0.5);
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .controls {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .search-container {
+            position: relative;
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 12px 20px 12px 40px;
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 4px;
+            color: #e0e0e0;
+            font-family: inherit;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: #00ff41;
+            box-shadow: 0 0 10px rgba(0, 255, 65, 0.3);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #666;
+        }
+
+        .filters {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 8px 16px;
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 4px;
+            color: #888;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: inherit;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: rgba(0, 153, 255, 0.2);
+            border-color: #0099ff;
+            color: #0099ff;
+        }
+
+        .repos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .repo-card {
+            background: linear-gradient(135deg, #1a1a1a 0%, #252525 100%);
+            border: 1px solid #333;
+            border-radius: 8px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .repo-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #00ff41, transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .repo-card:hover {
+            transform: translateY(-2px);
+            border-color: #00ff41;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .repo-card:hover::before {
+            opacity: 1;
+        }
+
+        .repo-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+
+        .repo-name-section {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .repo-icon {
+            width: 18px;
+            height: 18px;
+            fill: #00ff41;
+        }
+
+        .repo-name {
+            color: #00ff41;
+            font-size: 1.1rem;
+            font-weight: bold;
+            text-decoration: none;
+            text-shadow: 0 0 5px rgba(0, 255, 65, 0.3);
+        }
+
+        .repo-name:hover {
+            text-shadow: 0 0 10px rgba(0, 255, 65, 0.6);
+        }
+
+        .repo-status {
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .status-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #00ff41;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .repo-description {
+            color: #888;
+            margin-bottom: 1rem;
+            line-height: 1.5;
+            font-size: 0.9rem;
+        }
+
+        .repo-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .tag {
+            background: rgba(0, 153, 255, 0.2);
+            color: #0099ff;
+            border: 1px solid rgba(0, 153, 255, 0.3);
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .repo-meta {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+            gap: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid #333;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.8rem;
+            color: #666;
+        }
+
+        .meta-icon {
+            width: 14px;
+            height: 14px;
+            fill: currentColor;
+        }
+
+        .language-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+
+        .loading {
+            text-align: center;
+            color: #00ff41;
+            font-size: 1.2rem;
+            margin: 3rem 0;
+            animation: pulse 2s infinite;
+        }
+
+        .error {
+            background: rgba(255, 0, 0, 0.1);
+            border: 1px solid rgba(255, 0, 0, 0.3);
+            border-radius: 4px;
+            padding: 1rem;
+            text-align: center;
+            color: #ff4444;
+            margin: 1rem 0;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 3rem;
+            padding: 2rem;
+            border-top: 1px solid #333;
+            color: #666;
+            font-size: 0.8rem;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            .profile-section {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 1rem;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 0.5rem;
+            }
+            
+            .controls {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .search-container {
+                min-width: auto;
+            }
+            
+            .repos-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="matrix-bg"></div>
+    
+    <div class="container">
+        <div class="terminal-header">
+            <div class="terminal-dots">
+                <div class="dot red"></div>
+                <div class="dot yellow"></div>
+                <div class="dot green"></div>
+            </div>
+            <div class="terminal-title">sbeteta42@cyberdevsysops:~/portfolio</div>
+        </div>
+
+        <header class="header">
+            <div class="profile-section">
+                <img id="profile-img" class="profile-img" src="" alt="Profile" style="display: none;">
+                <div class="profile-info">
+                    <h1>sbeteta42</h1>
+                    <div class="subtitle">CyberSeurity && DevSysOps Engineer</div>
+                    <div class="bio">
+                        <span class="terminal-prompt">$</span><span id="bio">Infrastructure • Automation • Monitoring • CI/CD</span>
+                    </div>
+                </div>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <span id="repo-count" class="stat-number">-</span>
+                        <span class="stat-label">Repos</span>
+                    </div>
+                    <div class="stat-item">
+                        <span id="followers-count" class="stat-number">-</span>
+                        <span class="stat-label">Followers</span>
+                    </div>
+                    <div class="stat-item">
+                        <span id="following-count" class="stat-number">-</span>
+                        <span class="stat-label">Following</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div class="controls">
+            <div class="search-container">
+                <svg class="search-icon" width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                </svg>
+                <input type="text" id="search-input" class="search-input" placeholder="grep -i 'repository_name'">
+            </div>
+            <div class="filters">
+                <button class="filter-btn active" data-filter="all">ALL</button>
+                <button class="filter-btn" data-filter="devops">DEVOPS</button>
+                <button class="filter-btn" data-filter="automation">AUTOMATION</button>
+                <button class="filter-btn" data-filter="monitoring">MONITORING</button>
+                <button class="filter-btn" data-filter="cicd">CI/CD</button>
+                <button class="filter-btn" data-filter="infrastructure">INFRA</button>
+            </div>
+        </div>
+
+        <div id="loading" class="loading">
+            <div>$ git clone https://github.com/sbeteta42/*</div>
+            <div>Cloning repositories...</div>
+        </div>
+        <div id="error" class="error" style="display: none;"></div>
+        <div id="repos-container" class="repos-grid"></div>
+
+        <footer class="footer">
+            <div>$ uptime | grep -o "load average.*"</div>
+            <div>System Status: Online • Last Updated: <span id="last-updated"></span></div>
+        </footer>
+    </div>
+
+    <script>
+        const username = 'sbeteta42';
+        let allRepos = [];
+        let filteredRepos = [];
+
+        const languageColors = {
+            JavaScript: '#f1e05a',
+            TypeScript: '#2b7489',
+            Python: '#3572a5',
+            Go: '#00ADD8',
+            Rust: '#dea584',
+            Shell: '#89e051',
+            Bash: '#89e051',
+            PowerShell: '#012456',
+            Dockerfile: '#384d54',
+            YAML: '#cb171e',
+            JSON: '#292929',
+            Terraform: '#623ce4',
+            Ansible: '#ee0000',
+            Kubernetes: '#326ce5',
+            HTML: '#e34c26',
+            CSS: '#563d7c',
+            Java: '#b07219',
+            C: '#555555',
+            'C++': '#f34b7d',
+            PHP: '#4f5d95',
+            Ruby: '#701516',
+            Swift: '#ffac45',
+            Kotlin: '#f18e33'
+        };
+
+        const devOpsKeywords = {
+            devops: ['docker', 'kubernetes', 'k8s', 'helm', 'terraform', 'ansible', 'puppet', 'chef'],
+            automation: ['automation', 'script', 'bot', 'webhook', 'cron', 'scheduler', 'pipeline'],
+            monitoring: ['monitoring', 'prometheus', 'grafana', 'elk', 'kibana', 'nagios', 'zabbix', 'datadog'],
+            cicd: ['ci', 'cd', 'jenkins', 'gitlab', 'github-actions', 'travis', 'circle', 'pipeline', 'build', 'deploy'],
+            infrastructure: ['infrastructure', 'aws', 'azure', 'gcp', 'cloud', 'server', 'network', 'vpc', 'iac']
+        };
+
+        function getRepoCategory(repo) {
+            const text = `${repo.name} ${repo.description || ''}`.toLowerCase();
+            const topics = repo.topics || [];
+            
+            for (const [category, keywords] of Object.entries(devOpsKeywords)) {
+                if (keywords.some(keyword => 
+                    text.includes(keyword) || 
+                    topics.some(topic => topic.includes(keyword))
+                )) {
+                    return category;
+                }
+            }
+            return 'general';
+        }
+
+        function getRepoTags(repo) {
+            const tags = [];
+            const category = getRepoCategory(repo);
+            
+            if (category !== 'general') {
+                tags.push(category);
+            }
+            
+            if (repo.language) {
+                tags.push(repo.language.toLowerCase());
+            }
+            
+            if (repo.topics) {
+                tags.push(...repo.topics.slice(0, 3));
+            }
+            
+            return [...new Set(tags)].slice(0, 4);
+        }
+
+        async function fetchUserData() {
+            try {
+                const response = await fetch(`https://api.github.com/users/${username}`);
+                if (!response.ok) throw new Error('Erreur lors du chargement du profil');
+                
+                const userData = await response.json();
+                
+                if (userData.bio) {
+                    document.getElementById('bio').textContent = userData.bio;
+                }
+                document.getElementById('repo-count').textContent = userData.public_repos;
+                document.getElementById('followers-count').textContent = userData.followers;
+                document.getElementById('following-count').textContent = userData.following;
+                
+                if (userData.avatar_url) {
+                    const profileImg = document.getElementById('profile-img');
+                    profileImg.src = userData.avatar_url;
+                    profileImg.style.display = 'block';
+                }
+            } catch (error) {
+                console.error('Erreur:', error);
+            }
+        }
+
+        async function fetchRepositories() {
+            try {
+                const response = await fetch(`https://api.github.com/users/${username}/repos?sort=updated&per_page=100`);
+                if (!response.ok) throw new Error('Erreur lors du chargement des repositories');
+                
+                allRepos = await response.json();
+                filteredRepos = [...allRepos];
+                
+                document.getElementById('loading').style.display = 'none';
+                displayRepositories(filteredRepos);
+                
+            } catch (error) {
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('error').style.display = 'block';
+                document.getElementById('error').textContent = `ERROR: ${error.message}`;
+            }
+        }
+
+        function displayRepositories(repos) {
+            const container = document.getElementById('repos-container');
+            
+            if (repos.length === 0) {
+                container.innerHTML = '<div style="text-align: center; color: #666; font-style: italic;">$ ls -la | grep repo<br>No repositories found matching criteria</div>';
+                return;
+            }
+
+            container.innerHTML = repos.map(repo => {
+                const tags = getRepoTags(repo);
+                const updatedDate = new Date(repo.updated_at);
+                const isRecent = (Date.now() - updatedDate.getTime()) < (30 * 24 * 60 * 60 * 1000);
+                
+                return `
+                    <div class="repo-card">
+                        <div class="repo-header">
+                            <div class="repo-name-section">
+                                <svg class="repo-icon" viewBox="0 0 16 16">
+                                    <path d="M2 2.5A2.5 2.5 0 014.5 0h8.75a.75.75 0 01.75.75v12.5a.75.75 0 01-.75.75h-2.5a.75.75 0 110-1.5h1.75v-2h-8a1 1 0 00-.714 1.7.75.75 0 01-1.072 1.05A2.495 2.495 0 012 11.5v-9zm10.5-1V9h-8c-.356 0-.694.074-1 .208V2.5a1 1 0 011-1h8z"/>
+                                </svg>
+                                <a href="${repo.html_url}" target="_blank" class="repo-name">${repo.name}</a>
+                            </div>
+                            ${isRecent ? `
+                                <div class="repo-status">
+                                    <div class="status-dot"></div>
+                                    ACTIVE
+                                </div>
+                            ` : ''}
+                        </div>
+                        
+                        <div class="repo-description">
+                            ${repo.description || 'No description provided'}
+                        </div>
+                        
+                        ${tags.length > 0 ? `
+                            <div class="repo-tags">
+                                ${tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+                            </div>
+                        ` : ''}
+                        
+                        <div class="repo-meta">
+                            ${repo.language ? `
+                                <div class="meta-item">
+                                    <div class="language-dot" style="background-color: ${languageColors[repo.language] || '#666'}"></div>
+                                    ${repo.language}
+                                </div>
+                            ` : ''}
+                            <div class="meta-item">
+                                <svg class="meta-icon" viewBox="0 0 16 16">
+                                    <path d="M8 .25a.75.75 0 01.673.418l1.882 3.815 4.21.612a.75.75 0 01.416 1.279l-3.046 2.97.719 4.192a.75.75 0 01-1.088.791L8 12.347l-3.766 1.98a.75.75 0 01-1.088-.79l.72-4.194L.818 6.374a.75.75 0 01.416-1.28l4.21-.611L7.327.668A.75.75 0 018 .25z"/>
+                                </svg>
+                                ${repo.stargazers_count}
+                            </div>
+                            <div class="meta-item">
+                                <svg class="meta-icon" viewBox="0 0 16 16">
+                                    <path d="M5 3.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm0 2.122a2.25 2.25 0 10-1.5 0v.878A2.25 2.25 0 005.75 8.5h1.5v2.128a2.251 2.251 0 101.5 0V8.5h1.5a2.25 2.25 0 002.25-2.25v-.878a2.25 2.25 0 10-1.5 0v.878a.75.75 0 01-.75.75h-4.5A.75.75 0 015 6.25v-.878z"/>
+                                </svg>
+                                ${repo.forks_count}
+                            </div>
+                            <div class="meta-item">
+                                <svg class="meta-icon" viewBox="0 0 16 16">
+                                    <path d="M1.5 8a6.5 6.5 0 1113 0 6.5 6.5 0 01-13 0zM8 0a8 8 0 100 16A8 8 0 008 0zm.5 4.75a.75.75 0 00-1.5 0v3.5a.75.75 0 00.471.696l2.5 1a.75.75 0 00.557-1.392L8.5 7.742V4.75z"/>
+                                </svg>
+                                ${updatedDate.toLocaleDateString('fr-FR')}
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function filterRepositories() {
+            const searchTerm = document.getElementById('search-input').value.toLowerCase();
+            const activeFilter = document.querySelector('.filter-btn.active').dataset.filter;
+            
+            filteredRepos = allRepos.filter(repo => {
+                const matchesSearch = repo.name.toLowerCase().includes(searchTerm) || 
+                                    (repo.description && repo.description.toLowerCase().includes(searchTerm));
+                
+                let matchesFilter = true;
+                if (activeFilter !== 'all') {
+                    const category = getRepoCategory(repo);
+                    matchesFilter = category === activeFilter;
+                }
+                
+                return matchesSearch && matchesFilter;
+            });
+            
+            displayRepositories(filteredRepos);
+        }
+
+        // Event listeners
+        document.getElementById('search-input').addEventListener('input', filterRepositories);
+
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelector('.filter-btn.active').classList.remove('active');
+                btn.classList.add('active');
+                filterRepositories();
+            });
+        });
+
+        // Update footer timestamp
+        document.getElementById('last-updated').textContent = new Date().toLocaleString('fr-FR');
+
+        // Initialize
+        fetchUserData();
+        fetchRepositories();
+    </script>
+</body>
+</html>
