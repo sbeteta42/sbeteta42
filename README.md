@@ -39,7 +39,7 @@ Infrastructure • Automation • Monitoring • Cybersecurity
 
 ### 🔗 Connect
 
-[![Portfolio](https://img.shields.io/badge/Portfolio-00FF41?style=for-the-badge&logo=About.me&logoColor=black)](https://sbeteta42.github.io/sbeteta42/)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/votre-profil)
+
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/st%C3%A9phane-beteta-055b4221/
 
 </div>
