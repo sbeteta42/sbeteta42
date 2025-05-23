@@ -40,6 +40,6 @@ Infrastructure • Automation • Monitoring • Cybersecurity
 ### 🔗 Connect
 
 
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/st%C3%A9phane-beteta-055b4221/
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/st%C3%A9phane-beteta-055b4221/)
 
 </div>
