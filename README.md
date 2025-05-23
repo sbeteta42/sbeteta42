@@ -1,10 +1,10 @@
 # 👋 Salut, je suis sbeteta42 !
 
-## 🚀 SecSysOps Engineer 
+## 🚀 CyberSecurity && SysOps Engineer 
 Infrastructure • Automation • Monitoring • Cybersecurity
 <div align="center">
 
-# 🖥️ sbeteta42 | DevSysOps Engineer
+# 🖥️ sbeteta42 | CyberSecurity && SysOps Engineer
 
 <img src="https://readme-typing-svg.herokuapp.com?font=JetBrains+Mono&size=20&duration=3000&pause=1000&color=00FF41&center=true&vCenter=true&width=435&lines=Infrastructure+Automation;CyberSecurity;Monitoring+%26+Observability;Cloud+Architecture" alt="Typing SVG" />
 
