@@ -6,7 +6,7 @@ Infrastructure • Automation • Monitoring • Cybersecurity
 
 # 🖥️ sbeteta42 | DevSysOps Engineer
 
-<img src="https://readme-typing-svg.herokuapp.com?font=JetBrains+Mono&size=20&duration=3000&pause=1000&color=00FF41&center=true&vCenter=true&width=435&lines=Infrastructure+Automation;CI%2FCD+Pipelines;Monitoring+%26+Observability;Cloud+Architecture" alt="Typing SVG" />
+<img src="https://readme-typing-svg.herokuapp.com?font=JetBrains+Mono&size=20&duration=3000&pause=1000&color=00FF41&center=true&vCenter=true&width=435&lines=Infrastructure+Automation;CI%2FCD+Pipelines;Monitoring+%26+Observability;Cloud+Architecture;CyberSecurity" alt="Typing SVG" />
 
 ### 🚀 [🌐 Voir Portfolio Complet](https://sbeteta42.github.io/sbeteta42/)
 
