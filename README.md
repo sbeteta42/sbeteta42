@@ -1,3 +1,8 @@
-- 👋 Hi, I’m @sbeteta42
-- 👀 I’m interested in cyber-security and sysadmin devops
-- 📫 How to reach me ...support@beteta.org
+# 👋 Salut, je suis sbeteta42 !
+
+## 🚀 DevSysOps Engineer
+
+Infrastructure • Automation • Monitoring • CI/CD
+
+### 🔗 [Voir mon Portfolio Complet](https://sbeteta42.github.io/sbeteta42/)
+
